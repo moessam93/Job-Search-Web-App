@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const connectDB = (url) => {
+    console.log("Database connected");
   return mongoose.createConnection(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
