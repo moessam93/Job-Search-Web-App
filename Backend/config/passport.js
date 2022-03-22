@@ -2,7 +2,6 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const validPassword = require('../lib/passwordUtils').validPassword;
 const User = require('../models/User');
-//const User = connection.models.User;
 
 const customFields = {
     usernameField:'email',
@@ -36,3 +35,14 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(userId, done) {
     User.findById(userId).then((user)=>done(null,user)).catch((err)=>done(err));
 });
+
+const isAuth = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        next();
+    }
+    else {
+        res.send('Unauthorized');
+    }
+}
+
+module.exports = {isAuth};
