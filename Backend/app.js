@@ -4,6 +4,7 @@ const session = require('express-session');
 const passport = require('passport');
 const bp = require('body-parser');
 const usersRouter = require('./routes/users');
+const jobsRouter = require('./routes/jobs');
 require('dotenv').config();
 const connectDB = require('./database/connect');
 const MongoStore = require('connect-mongo');
@@ -54,6 +55,7 @@ app.use(cookieParser(process.env.SECRET));
  
  //Routes
  app.use('/',usersRouter);
+ app.use('/',jobsRouter);
 
 connectDB(process.env.MONGO_URI);
 app.listen(process.env.PORT,()=>{
