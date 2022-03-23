@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   },
   lastName: {
     type: String,
-    required:[true,'user must have a last name']
+    required: [true, 'user must have a last name']
   },
   hash: {
     type: String,
@@ -19,12 +19,12 @@ const userSchema = new mongoose.Schema({
   },
   salt: {
     type: String,
-    required:true
-},
-createdAt: {
-  type: Date,
-  default: Date.now(),
-},
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);
