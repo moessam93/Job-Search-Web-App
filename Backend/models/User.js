@@ -25,6 +25,11 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  accountType:{
+    type:String,
+    required: true,
+    enum:["Job Seeker","Recruiter"]
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);
