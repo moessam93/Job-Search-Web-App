@@ -90,5 +90,22 @@ const applyToJob = async (req, res, next) => {
     }
 }
 
+const isJobSeeker = (req,res,next)=>{
+    if (req.user.accountType === 'Job Seeker'){
+        next();
+    }
+    else{
+        res.send('Only Job Seekers Can Apply to Jobs!');
+    }
+}
 
-module.exports = { createUser, viewUserProfile, updateUserProfile, applyToJob};
+const isRecruiter = (req,res,next)=>{
+    if (req.user.accountType === 'Recruiter'){
+        next();
+    }
+    else{
+        res.send('Only Recruiters Can Post Jobs!');
+    }
+}
+
+module.exports = { createUser, viewUserProfile, updateUserProfile, applyToJob, isJobSeeker, isRecruiter};
