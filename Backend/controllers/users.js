@@ -51,10 +51,10 @@ const createUser = (req, res, next) => {
                 const newCompanyProfile = CompanyProfile({
                     userID: newUser._id,
                     companyName: req.body.companyName,
-                    companyWebsite:req.body.companyWebsite,
-                    industry:req.body.industry,
-                    noEmployees:req.body.noEmployees,
-                    location:req.body.location
+                    companyWebsite: req.body.companyWebsite,
+                    industry: req.body.industry,
+                    noEmployees: req.body.noEmployees,
+                    location: req.body.location
                 })
                 CompanyProfile.insertMany(newCompanyProfile);
                 User.insertMany(newUser);
@@ -90,22 +90,22 @@ const applyToJob = async (req, res, next) => {
     }
 }
 
-const isJobSeeker = (req,res,next)=>{
-    if (req.user.accountType === 'Job Seeker'){
+const isJobSeeker = (req, res, next) => {
+    if (req.user.accountType === 'Job Seeker') {
         next();
     }
-    else{
+    else {
         res.send('Only Job Seekers Can Apply to Jobs!');
     }
 }
 
-const isRecruiter = (req,res,next)=>{
-    if (req.user.accountType === 'Recruiter'){
+const isRecruiter = (req, res, next) => {
+    if (req.user.accountType === 'Recruiter') {
         next();
     }
-    else{
+    else {
         res.send('Only Recruiters Can Post Jobs!');
     }
 }
 
-module.exports = { createUser, viewUserProfile, updateUserProfile, applyToJob, isJobSeeker, isRecruiter};
+module.exports = { createUser, viewUserProfile, updateUserProfile, applyToJob, isJobSeeker, isRecruiter };
