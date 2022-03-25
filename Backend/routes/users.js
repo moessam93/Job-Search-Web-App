@@ -1,16 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const {createUser,viewProfile,updateProfile, applyToJob} = require('../controllers/users');
+const {createUser,viewUserProfile,updateUserProfile, applyToJob, isJobSeeker} = require('../controllers/users');
 const passport = require('passport');
 const {isAuth} = require('../config/passport');
 
 router.route('/register').post(createUser);
 
-router.route('/profile').get(isAuth,viewProfile);
+router.route('/employer/register').post(createUser);
 
-router.route('/profile/update/').patch(isAuth,updateProfile);
+router.route('/profile').get(isAuth,viewUserProfile);
 
-router.route('/jobs/apply/:id').patch(isAuth,applyToJob);
+router.route('/profile/update/').patch(isAuth,updateUserProfile);
+
+router.route('/jobs/apply/:id').patch(isAuth,isJobSeeker,applyToJob);
 
 router.route('/login').post(passport.authenticate('local',{failureRedirect:'/login-failure',successRedirect:'/login-success'}));
 
